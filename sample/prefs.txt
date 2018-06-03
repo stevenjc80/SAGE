@@ -1,0 +1,21 @@
+# This file provides the preferences for testing.
+# Course and Assignment Name:
+Lab Test #1, EECS1021 W17
+# Dist file for student info ("default" for /etc/passwd)
+../EECS1021.txt
+# Location of java exe ("default" for /cs/local/bin/javac)
+default
+# Main Class Name (don't include ".class"):
+T1330
+# Source filenames to include in report (comma separated, include ".java")
+T1330.java
+# Solution filenames to include in report (comma separated, or "none")
+Solution.java
+# File containing summary notes or marking scheme (or put "none")
+markingScheme.txt
+# Test 1 input and output:
+in1.txt
+out1.txt
+# Test 2 input and output:
+in2.txt
+out2.txt

@@ -1,0 +1,172 @@
+<xmp>
+********************************************************************
+    Lab Test #1, EECS1021 W17
+    Name: Boyle, Sven                             
+    Login: sdoy           YUID: 123654987
+********************************************************************
+
+
+
+  __________________________
+ /  Test 1: Passed          \
+/____________________________\______________________________________
+
+
+
+  __________________________
+ /  Test 2: Passed          \
+/____________________________\______________________________________
+
+
+
+  __________________________
+ /  Tested Code             \
+/____________________________\______________________________________
+
+  1 |
+  2 |
+  3 | 
+  4 | import java.io.*;
+  5 | import java.util.Scanner;
+  6 | 
+  7 | public class T1330
+  8 | {
+  9 | 	public static void main(String[] args) throws FileNotFoundException
+ 10 | 	{
+ 11 | 		// Fetch sample file and set up for parsing
+ 12 | 		Scanner userInput = new Scanner(System.in);
+ 13 | 		System.out.print("Please enter the samples file: ");
+ 14 | 		String filename = userInput.nextLine(); 
+ 15 | 		FileReader file = new FileReader(filename);
+ 16 | 		Scanner fileInput = new Scanner(file);
+ 17 | 		
+ 18 | 		// Get threshold value
+ 19 | 		System.out.print("Please enter the pass threshold (in MPa): ");
+ 20 | 		double threshold = userInput.nextDouble();
+ 21 | 		
+ 22 | 		int testFailed = 0;
+ 23 | 		// Analyze each sample line by line
+ 24 | 		while(fileInput.hasNextLine()){
+ 25 | 			
+ 26 | 			// Parse sample name and score for analysis
+ 27 | 			String currSample = fileInput.nextLine();
+ 28 | 			String sampleName = currSample.substring(0,7);
+ 29 | 			String sampleScore = currSample.substring(8);
+ 30 | 			double currScore = Double.parseDouble(sampleScore);
+ 31 | 			
+ 32 | 			// Analyze for pass/fail
+ 33 | 			if(currScore < threshold){
+ 34 | 				System.out.println(sampleName + " failed!");
+ 35 | 				testFailed++;
+ 36 | 			}
+ 37 | 		}
+ 38 | 		
+ 39 | 		// Print test results
+ 40 | 		if (testFailed > 0){
+ 41 | 			System.out.println("Tests failed: " + testFailed);
+ 42 | 		} else {
+ 43 | 			System.out.println("All tests passed!");
+ 44 | 		}
+ 45 | 		
+ 46 | 		fileInput.close();
+ 47 | 		userInput.close();
+ 48 | 	}
+ 49 | }
+
+--- Grader's Feedback ----------------------------------------------
+ - 
+____________________________________________________________________
+
+
+
+  __________________________
+ /  Summary                 \
+/____________________________\______________________________________
+
+    1/1 mark for prompting for and reading in input filename
+    1/1 marks for prompting for and reading in pass/fail threshold
+    2/2 marks for opening file (Scanner, File object, throws clause)
+    2/2 marks for iterating through file (loop and read-in)
+    2/2 marks for splitting and parsing the lines from the input file
+    1.5/1.5 marks for outputting failed samples
+    2/2 marks for outputting the overall pass/fail status
+    1.5/1.5 marks for closing Scanners
+
+Grade: 13/13
+____________________________________________________________________
+
+
+
+  __________________________
+ /  Solution Code           \
+/____________________________\______________________________________
+
+  1 | import java.io.File;
+  2 | import java.util.Scanner;
+  3 | 
+  4 | /*
+  5 | A task in civil engineering is testing the strength of samples of concrete. The
+  6 | samples are put under increasing pressure until they break. Create a class
+  7 | called T1330.java that reads in a file with test results and outputs whether or
+  8 | not all the tests passed. The program prompts for a pass/fail threshold (in MPa)
+  9 | and an input file. Each line in the file has two comma-delimited fields: the 
+ 10 | sample name, and its breakpoint (in MPa). If a sample fails, output its name. 
+ 11 | After reading the file output the number of tests that failed, or "All tests 
+ 12 | passed!".
+ 13 | 
+ 14 | Important: Your prompts and other output should match those described here.
+ 15 | Marks will be deducted if there are spelling or spacing discrepancies.
+ 16 | 
+ 17 | Important: Your program should employ the programming approaches and style
+ 18 | presented in lectures. In particular, marks will be deducted if resources are
+ 19 | not closed.
+ 20 | */
+ 21 | 
+ 22 | public class Solution
+ 23 | {
+ 24 | 
+ 25 | 	public static void main(String[] args) throws Exception
+ 26 | 	{
+ 27 | 		int numFailed = 0;
+ 28 | 		double threshold;
+ 29 | 		String line;
+ 30 | 		
+ 31 | 		Scanner input = new Scanner(System.in);
+ 32 | 		System.out.print("Please enter the samples file: ");
+ 33 | 		Scanner fileInput = new Scanner(new File(input.nextLine()));
+ 34 | 		System.out.print("Please enter the pass threshold (in MPa): ");
+ 35 | 		threshold = Double.parseDouble(input.next());
+ 36 | 		input.close();
+ 37 | 		
+ 38 | 		String[] fields;
+ 39 | 		String sample;
+ 40 | 		double breakingPoint;
+ 41 | 		while (fileInput.hasNextLine())
+ 42 | 		{
+ 43 | 			line = fileInput.nextLine();
+ 44 | 			fields = line.split(",");
+ 45 | 			sample = fields[0];
+ 46 | 			breakingPoint = Double.parseDouble(fields[1]);
+ 47 | 			if (breakingPoint < threshold)
+ 48 | 			{
+ 49 | 				numFailed++;
+ 50 | 				System.out.println(sample + " failed!");
+ 51 | 			}
+ 52 | 		}
+ 53 | 		fileInput.close();
+ 54 | 		
+ 55 | 		if (numFailed > 0)
+ 56 | 		{
+ 57 | 			System.out.println("Tests failed: " + numFailed);
+ 58 | 		}
+ 59 | 		else
+ 60 | 		{
+ 61 | 			System.out.println("All tests passed!");
+ 62 | 		}
+ 63 | 	}
+ 64 | 
+ 65 | }
+
+____________________________________________________________________
+
+</xmp>

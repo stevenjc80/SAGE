@@ -1,0 +1,209 @@
+<xmp>
+********************************************************************
+    Lab Test #1, EECS1021 W17
+    Name: Vai, Peter             
+    Login: ysvan              YUID: 123659487
+********************************************************************
+
+
+
+  __________________________
+ /  Compilation Errors      \
+/____________________________\______________________________________
+T1330.java:21: error: ';' expected
+			String MPa = fields[1]);
+			                      ^
+T1330.java:24: error: ')' expected
+			if (MPa.equals()
+			                ^
+2 errors
+
+____________________________________________________________________
+
+
+
+  __________________________
+ /  Test 1:                 \
+/____________________________\______________________________________
+
+--- Input ----------------------------------------------------------
+../input.txt¶
+12¶
+
+--- Expected Output ------------------------------------------------
+Please·enter·the·samples·file:·Please·enter·the·pass·threshold·(in·MPa):·All·tests·passed!¶
+
+--- Tested Output --------------------------------------------------
+Error:·Could·not·find·or·load·main·class·T1330¶
+
+--- Grader's Feedback ----------------------------------------------
+ - 
+
+____________________________________________________________________
+
+
+
+  __________________________
+ /  Test 2:                 \
+/____________________________\______________________________________
+
+--- Input ----------------------------------------------------------
+../input.txt¶
+25¶
+
+--- Expected Output ------------------------------------------------
+Please·enter·the·samples·file:·Please·enter·the·pass·threshold·(in·MPa):·Sample1·failed!¶
+Sample3·failed!¶
+Sample5·failed!¶
+Sample6·failed!¶
+Tests·failed:·4¶
+
+--- Tested Output --------------------------------------------------
+Error:·Could·not·find·or·load·main·class·T1330¶
+
+--- Grader's Feedback ----------------------------------------------
+ - 
+
+____________________________________________________________________
+
+
+
+  __________________________
+ /  Tested Code             \
+/____________________________\______________________________________
+
+  1 | import java.io.File;
+  2 | import java.io.FileNotFoundException;
+  3 | import java.util.Scanner;
+  4 | 
+  5 | public class T1330
+  6 | {
+  7 | 	String Sample;
+  8 | 	String MPa;
+  9 | 	
+ 10 | 	
+ 11 | 	public static void main(String[] args) throws FileNotFoundException
+ 12 | 	{
+ 13 | 		Scanner sc = new Scanner(new File("input.txt"));
+ 14 | 		
+ 15 | 		for (; fileInput.hasNextLine(););
+ 16 | 			String line;
+ 17 | 			line = fileInput.nextLine();
+ 18 | 			String[] fields = line.split (",");
+ 19 | 			fields = line. split(","); repeat
+ 20 | 			String Sample = fields[0];
+ 21 | 			String MPa = fields[1]);
+ 22 | 			//double MPa = Double.parseDouble(fields[1]);
+ 23 | 			
+ 24 | 			if (MPa.equals()
+ 25 | 			{
+ 26 | 				Scanner input = new Scanner(System.in);
+ 27 | 				int value = input.nextInt(); value not used
+ 28 | 			input.close();
+ 29 | 			}
+ 30 | 			
+ 31 | 		Method to determine pass or not?
+ 32 | 		
+ 33 | 	}
+ 34 |  
+ 35 | 	
+ 36 | 	
+ 37 | }
+
+--- Grader's Feedback ----------------------------------------------
+ - 
+____________________________________________________________________
+
+
+
+  __________________________
+ /  Summary                 \
+/____________________________\______________________________________
+
+    0/1 mark for prompting for and reading in input filename
+    0/1 marks for prompting for and reading in pass/fail threshold
+    2/2 marks for opening file (Scanner, File object, throws clause)
+    2/2 marks for iterating through file (loop and read-in)
+    2/2 marks for splitting and parsing the lines from the input file
+    0/1.5 marks for outputting failed samples
+    0/2 marks for outputting the overall pass/fail status
+    1/1.5 marks for closing Scanners
+
+Grade: 7/13
+____________________________________________________________________
+
+
+
+  __________________________
+ /  Solution Code           \
+/____________________________\______________________________________
+
+  1 | import java.io.File;
+  2 | import java.util.Scanner;
+  3 | 
+  4 | /*
+  5 | A task in civil engineering is testing the strength of samples of concrete. The
+  6 | samples are put under increasing pressure until they break. Create a class
+  7 | called T1330.java that reads in a file with test results and outputs whether or
+  8 | not all the tests passed. The program prompts for a pass/fail threshold (in MPa)
+  9 | and an input file. Each line in the file has two comma-delimited fields: the 
+ 10 | sample name, and its breakpoint (in MPa). If a sample fails, output its name. 
+ 11 | After reading the file output the number of tests that failed, or "All tests 
+ 12 | passed!".
+ 13 | 
+ 14 | Important: Your prompts and other output should match those described here.
+ 15 | Marks will be deducted if there are spelling or spacing discrepancies.
+ 16 | 
+ 17 | Important: Your program should employ the programming approaches and style
+ 18 | presented in lectures. In particular, marks will be deducted if resources are
+ 19 | not closed.
+ 20 | */
+ 21 | 
+ 22 | public class Solution
+ 23 | {
+ 24 | 
+ 25 | 	public static void main(String[] args) throws Exception
+ 26 | 	{
+ 27 | 		int numFailed = 0;
+ 28 | 		double threshold;
+ 29 | 		String line;
+ 30 | 		
+ 31 | 		Scanner input = new Scanner(System.in);
+ 32 | 		System.out.print("Please enter the samples file: ");
+ 33 | 		Scanner fileInput = new Scanner(new File(input.nextLine()));
+ 34 | 		System.out.print("Please enter the pass threshold (in MPa): ");
+ 35 | 		threshold = Double.parseDouble(input.next());
+ 36 | 		input.close();
+ 37 | 		
+ 38 | 		String[] fields;
+ 39 | 		String sample;
+ 40 | 		double breakingPoint;
+ 41 | 		while (fileInput.hasNextLine())
+ 42 | 		{
+ 43 | 			line = fileInput.nextLine();
+ 44 | 			fields = line.split(",");
+ 45 | 			sample = fields[0];
+ 46 | 			breakingPoint = Double.parseDouble(fields[1]);
+ 47 | 			if (breakingPoint < threshold)
+ 48 | 			{
+ 49 | 				numFailed++;
+ 50 | 				System.out.println(sample + " failed!");
+ 51 | 			}
+ 52 | 		}
+ 53 | 		fileInput.close();
+ 54 | 		
+ 55 | 		if (numFailed > 0)
+ 56 | 		{
+ 57 | 			System.out.println("Tests failed: " + numFailed);
+ 58 | 		}
+ 59 | 		else
+ 60 | 		{
+ 61 | 			System.out.println("All tests passed!");
+ 62 | 		}
+ 63 | 	}
+ 64 | 
+ 65 | }
+
+____________________________________________________________________
+
+</xmp>

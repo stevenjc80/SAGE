@@ -1,0 +1,5 @@
+Please enter the samples file: Please enter the pass threshold (in MPa): Sample1 failed!
+Sample3 failed!
+Sample5 failed!
+Sample6 failed!
+Tests failed: 4

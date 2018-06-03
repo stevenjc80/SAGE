@@ -1,0 +1,6 @@
+Sample1,18.8
+Sample2,26.2
+Sample3,24.7
+Sample4,27.8
+Sample5,17.1
+Sample6,19.8

@@ -1,0 +1,10 @@
+    ?/1 mark for prompting for and reading in input filename
+    ?/1 marks for prompting for and reading in pass/fail threshold
+    ?/2 marks for opening file (Scanner, File object, throws clause)
+    ?/2 marks for iterating through file (loop and read-in)
+    ?/2 marks for splitting and parsing the lines from the input file
+    ?/1.5 marks for outputting failed samples
+    ?/2 marks for outputting the overall pass/fail status
+    ?/1.5 marks for closing Scanners
+    
+    Grade: X/13
